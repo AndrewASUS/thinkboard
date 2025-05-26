@@ -33,7 +33,6 @@ const NoteDetailPage = () => {
 
         try {
             await api.delete(`/notes/${id}`);
-            setNote((prev) => prev.filter((note) => note._id !== id)); // Updates the up to filter out deleted note
             toast.success("Note deleted succsessfully");
             navigate("/");
         } catch (error) {
@@ -51,7 +50,6 @@ const NoteDetailPage = () => {
 
         try {
             await api.put(`/notes/${id}`, note);
-            setNote((prev) => prev.filter((note) => note._id !== id));
             toast.success("Note updated successfully");
             navigate("/");
         } catch (error) {

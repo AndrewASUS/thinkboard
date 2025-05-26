@@ -7,7 +7,7 @@ import toast from "react-hot-toast"
 
 
 
-const NoteCard = ({ note, setNote }) => {
+const NoteCard = ({ note, setNotes }) => {
 
     const handleDelete = async (e, id) => {
         e.preventDefault()
@@ -15,7 +15,7 @@ const NoteCard = ({ note, setNote }) => {
         // if (!window.confirm("Are you sure you want the delete this note?")) return
         try {
             await api.delete(`/notes/${id}`)
-            setNote((prev) => prev.filter(note => note._id !== id)) // Updates the up to filter out deleted note
+            setNotes((prev) => prev.filter((note) => note._id !== id)) // Updates the up to filter out deleted note
             toast.success("Note deleted successfully")
         } catch (error) {
             console.log("Error in handleDelete", error)
