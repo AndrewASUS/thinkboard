@@ -15,6 +15,7 @@ const Homepage = () => {
 
 
   useEffect(() => {
+    setLoading(true)
     const fetchNotes = async ()=> {
       try {
         const res = await api.get("/notes")
@@ -23,6 +24,7 @@ const Homepage = () => {
       } catch (error) {
         console.log("Error in fetching notes", error)
         toast.error("Failed to load notes")
+      } finally {
         setLoading(false)
       }
     }
