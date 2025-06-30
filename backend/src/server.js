@@ -24,7 +24,7 @@ if (process.env.NODE_ENV !== "production") {
 
 
 // Calling cron to send an GET request to render.com every 14 minutes 
-if (NODE_ENV === "production") job.start()
+if (process.env.NODE_ENV === "production") job.start()
 
 
 app.use(express.json()) // allows you to parse the body of the request
