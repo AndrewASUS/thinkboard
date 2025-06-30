@@ -4,6 +4,8 @@ import dotenv from "dotenv"
 import noteRoutes from "./routes/note.route.js"
 import { connectDB } from "./config/db.js"
 import path from "path" // Already provided from node.js, no need to install
+import job from "./config/cron.js"
+
 
 
 dotenv.config()
@@ -21,8 +23,16 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 
+// Calling cron to send an GET request to render.com every 14 minutes 
+if (ENV.NODE_ENV === "production") job.start()
+
 
 app.use(express.json()) // allows you to parse the body of the request
+
+
+app.get("/api/health", (req, res) => {
+  res.status(200).json({ success: true })
+})
 
 
 
